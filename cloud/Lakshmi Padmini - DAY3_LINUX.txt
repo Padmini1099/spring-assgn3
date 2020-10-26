@@ -1,0 +1,106 @@
+1.What is the syntax used to cut copy paste in vi editor? 
+(A) cut - ndd generally it is used to delete but after deletion it saves in buffer so that we can paste other place so it serves as cut also
+    copy - nyy - copies contents from given particular n no of lines
+  in above both syntax n represents no of lines to be copied or deleted
+    paste - p - simply p is used to paste either copied or deleted one
+ 
+2.Give an example for  
+ 
+      i)cut command :
+	alchemy@alchemy-virtual-machine:~$ cut -b 3,4,5,6
+	glad we made
+	ad w
+
+       ii)tee command:
+	alchemy@alchemy-virtual-machine:~$ ls -l employee.txt | wc | tee count.txt 
+      	1       9      58       
+       iii)watch command:
+	watch -n 5 date (for every 5 seconds date gets updated)
+	Every 5.0s: date              alchemy-virtual-machine: Mon Sep 28 21:20:26 2020
+	Mon Sep 28 21:20:26 IST 2020
+
+3. Use find command for locating a file/dir. 
+ (A)find . --> used to find all file/dir in the current working directory
+    find . -name <searchword>\* --> to find file/dir with a particular key search given 
+
+4.Write a shell script for comparing the contents of  two files  
+(A)
+#!/bin/bash
+f1=/home/alchemy/file1.txt
+f2=/home/alchemy/file2.txt
+if cmp -s "$f1""$f2";
+then 
+echo "both equal"
+else
+echo "mismatched"
+fi
+
+alchemy@alchemy-virtual-machine:~$ cat file1.txt
+padmini 
+i completed gradution
+alchemy@alchemy-virtual-machine:~$ cat file2.txt
+padmini is graduated
+alchemy@alchemy-virtual-machine:~$ bash 4.sh
+mismatched
+
+5.Write a shell script for finding the cubic value of a given number 
+(A)
+#! /bin/bash
+echo "enter number"
+read num
+echo "cube of given $num :`expr "$num" \* "$num" \* "$num"`"
+
+alchemy@alchemy-virtual-machine:~$ bash 5.sh
+enter number
+4
+cube of given 4 :64
+ 
+6.Write a Shell script for getting word count of a file.If file is not exist in the path, then the script has to exit and return the error code. 
+ (A)
+#!/bin/bash
+file=${1}
+if [[ -f ${file} ]];
+then
+  echo -n "no of words are :" cat ${file} | wc -w
+else
+  echo ${?}
+  echo "not found"
+  exit 1 
+fi 
+
+
+alchemy@alchemy-virtual-machine:~$ ./6.sh /home/alchemy/file1.txt
+7
+alchemy@alchemy-virtual-machine:~$ ./6.sh /home/alchemy/file1000.txt
+1
+not found
+
+-----------------------------------------------------------
+employee add/mod/del
+
+#!/bin/bash
+f="/home/alchemy/employee.txt"
+echo "A=add , D-delete , U-update"
+read option
+if [ $option == "A" ]
+then
+  echo "enter details"
+  sed -i "$ a $id $name $age $dept $sal" $f
+  cat $f
+elif [ $option == "D" ]
+then 
+echo "enter id to delete"
+  read id 
+  sed -i "/$id/d" $f
+  cat $f
+elif [ $option == "U" ]
+then 
+  echo " enter id"
+  read id
+  echo "enter details"
+  read -r line 
+  sed -i "/id/c $line" $f
+  cat $f
+fi
+
+ 

@@ -1,0 +1,160 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Calibri;}}
+{\*\generator Riched20 10.0.15063}\viewkind4\uc1 
+\pard\sa200\sl276\slmult1\f0\fs22\lang9 1. Display all the information of the EMP table? \par
+ (A) select * from emp;\par
+2. Display unique Jobs from EMP table?  \par
+(A) MariaDB [emp_dept]> select distinct job j from emp;\par
+3. List the emps in the asc order of their Salaries?  \par
+(A) MariaDB [emp_dept]> select * from emp order by sal;\par
+4. List the details of the emps in asc order of the Dptnos and desc of Jobs?  \par
+(A) MariaDB [emp_dept]> select * from emp order by deptno,job desc;\par
+5. Display all the unique job groups in the descending order?  \par
+(A) MariaDB [emp_dept]> select distinct job from emp order by job desc;\par
+6. Display all the details of all \lquote Mgrs\rquote   \par
+(A) select * from emp e,emp e1 where e.empno=e1.mgr;\par
+7. List the emps who joined before 1981.  \par
+(A) MariaDB [emp_dept]> select * from emp where year(hiredate)='1981';\par
+8. List the Empno, Ename, Sal, Daily sal of all emps in the asc order of Annsal.  \par
+(A) MariaDB [emp_dept]> select empno,ename,sal,sal/30 dailysal from emp order by sal*12;\par
+9. Display the Empno, Ename, job, Hiredate, Exp of all Mgrs \par
+(A) select empno,ename,job,hiredate,months_between(sysdate,hiredate) exp from emp where empno in(select mgr from emp)\par
+10. List the Empno, Ename, Sal, Exp of all emps working for Mgr 7369.  \par
+11. Display all the details of the emps whose Comm. Is more than their Sal.\par
+  (A) MariaDB [emp_dept]> select * from emp where comm>sal;\par
+12. List the emps in the asc order of Designations of those joined after the second half  of 1981.  \par
+(A) MariaDB [emp_dept]> select * from emp where hiredate between '1981-06-01' and '1981-12-31' order by job;\par
+13. List the emps along with their Exp and Daily Sal is more than Rs.100.  \par
+(A) MariaDB [emp_dept]> select sal,sal/30 dailysal from emp where sal/30>100;\par
+14. List the emps who are either \lquote CLERK\rquote  or \lquote ANALYST\rquote  in the Desc order.  \par
+(A) select * from emp where job in('CLERK','ANALYST') ORDER BY JOB DESC;\par
+15. List the emps who joined on 1-MAY-81,3-DEC-81,17-DEC-81,19-JAN-80 in asc  order of seniority.  \par
+(A) select * from emp where hiredate in('1981-05-01','1981-12-3','1981-12-17','1980-01-19') order by hiredate; \par
+16. List the emp who are working for the Deptno 10 or20. \par
+ (A) MariaDB [emp_dept]> select * from emp where deptno in(10,20);\par
+17. List the emps who are joined in the year 81.  \par
+(A) MariaDB [emp_dept]> select * from emp where year(hiredate)=1981;\par
+18. List the emps who are joined in the month of Aug 1980.  \par
+(A) MariaDB [emp_dept]> select * from emp where hiredate>='1980-08-01' and hiredate<='1980-08-31';\par
+19. List the emps Who Annual sal ranging from 22000 and 45000.  \par
+ (A) select ename,sal, sal*12 annsal from emp where sal*12>=22000 and sal*12<=45000;\par
+20. List the Enames those are having five characters in their Names.  \par
+(A) MariaDB [emp_dept]> select ename from emp where char_length(ename)=5;\par
+21. List the Enames those are starting with \lquote S\rquote  and with five characters\par
+(A) MariaDB [emp_dept]> select ename from emp where ename like 'S____';\par
+22. List the emps those are having four chars and third character must be \lquote r\rquote .  \par
+(A) MariaDB [emp_dept]> select ename from emp where ename like '__R_';\par
+23. List the Five character names starting with \lquote S\rquote  and ending with \lquote H\rquote .  \par
+(A) MariaDB [emp_dept]> select ename from emp where ename like 's___h';\par
+24. List the emps who joined in January. \par
+(A) MariaDB [emp_dept]> select * from emp where month(hiredate)=01;\par
+25. List the emps who joined in the month of which second character is \lquote a\rquote .  \par
+(A) select monthname(hiredate),ename from emp where monthname(hiredate) like '_a%'; \par
+26. List the emps whose Sal is four digit number ending with Zero. \par
+ (A) SLECT * FROm emp where sal like '___0';\par
+27. List the emps whose names having a character set \lquote LL\rquote  together.  \par
+(A) MariaDB [emp_dept]> select ename from emp where ename like '%LL%';\par
+28. List the emps those who joined in 80\rquote s.  \par
+(A) MariaDB [emp_dept]> select * from emp where year(hiredate)='1980';\par
+29. List the emps who does not belong to Deptno 20.  \par
+(A) MariaDB [emp_dept]> select * from emp where deptno!=20;\par
+30. List all the emps except \lquote PRESIDENT\rquote  & \lquote MGR\rdblquote  in asc order of Salaries. \par
+(A) MariaDB [emp_dept]> select * from emp where job not in('PRESIDENT','MGR') order by sal ;\par
+31. List all the emps who joined before or after 1981.  \par
+(A) MariaDB [emp_dept]> select * from emp where year(hiredate)!=1981;\par
+32. List the emps whose Empno not starting with digit78.  \par
+(A) MariaDB [emp_dept]> select * from emp where empno not like '78%';\par
+33. List the emps who are working under \lquote MGR\rquote .  \par
+(A) MariaDB [emp_dept]> select e.empno,e.ename,e.mgr from emp e, emp e1 where e.empno=e1.mgr;\par
+34. List the emps who joined in any year but not belongs to the month of March.  \par
+(A) MariaDB [emp_dept]> select * from emp where month(hiredate)!=03;\par
+35. List all the Clerks of Deptno 20.  \par
+(A) select * from emp where deptno=20 and job='CLERK'\par
+36. List the emps of Deptno 30 or 10 joined in the year 1981.\par
+(A) select * from emp where dept in(10,30) and year(hiredate)=1981;  \par
+37. Display the details of SMITH.  \par
+(A) select * from emp where ename='SMITH';\par
+38. Display the location of SMITH.  \par
+(A) MariaDB [emp_dept]> select ename, loc from emp natural join dept where ename='SMITH';\par
+39. List the total information of EMP table along with DNAME and Loc of all the  emps Working Under \lquote ACCOUNTING\rquote  & \lquote RESEARCH\rquote  in the asc Deptno.  \par
+(A) MariaDB [emp_dept]> select * from emp natural join dept where dname in('ACCOUNTING','RESEARCH') order by deptno ;\par
+40. List the Empno, Ename, Sal, Dname of all the \lquote MGRS\rquote  and \lquote ANALYST\rquote  working in New York, Dallas with an exp more than 7 years without receiving the Comm asc order of Loc.  \par
+41. Display the Empno, Ename, Sal, Dname, Loc, Deptno, Job of all emps working at CJICAGO or working for ACCOUNTING dept with Ann Sal>28000, but the Sal should not be=3000 or 2800 who doesn\rquote t belongs to the Mgr and whose no is having a digit \lquote 7\rquote  or \lquote 8\rquote  in 3rd position in the asc order of Deptno and desc order of job.  \par
+(A) select e.empno,e.ename,e.sal,d.loc,e.deptno,e.job from emp e,dept d where (d.loc='chicago' or d.dname='accounting') and e.deptno=d.deptno and e.empno in (slect e.empno from emp e where (12*e.sal)>28000 and e.sal not in(3000,2800) and e.job!='manager' and e.empno like '__7%' or e.empno like '__8%')) order by e.deptno asc,e.job desc;\par
+42. Display the total information of the emps along with Grades in the asc order.  \par
+(A) select * from emp e,salgrade s where e.sal between s.hisal and s.losal order by grade;\par
+43. List all the Grade2 and Grade 3 emps.  \par
+ (A) select * from emp e,salgrade s where e.sal between s.losal and s.hisal and s.grade in(2,3);\par
+44. Display all Grade 4,5 Analyst and Mgr.  \par
+(A)  select * from emp e,salgrade s where e.sal between s.losal and s.hisal and s.grade in(4,5) and e.empno in (select e.empno from e where e.job in('manager','analyst');\par
+45. List the Empno, Ename, Sal, Dname, Grade, Exp, and Ann Sal of emps working  for Dept10 or20. \par
+(A) select e.empno,e.ename,e.sal,s.grade,d.dname,(months_between(sysdate,e.hireddate)/12) exp ,12*sal "ann sal" from emp e ,dept d ,salgrade s where e.deptno in(10,20) and e.deptno=d.deptno and e.sal between s.losal and s.hisal;\par
+46. List all the information of emp with Loc and the Grade of all the emps belong to the Grade range from 2 to 4 working at the Dept those are not starting with char set \lquote OP\rquote  and not ending with \lquote S\rquote  with the designation having a char \lquote a\rquote  any where joined in the year 1981 but not in the month of Mar or Sep and Sal not end with \lquote 00\rquote  in the asc order of Grades\par
+  \par
+47. List the details of the Depts along with Empno, Ename or without the emps  \par
+(A) select * from emp  right outer join dept where emp.deptno=dept.deptno;\par
+48. List the details of the emps whose Salaries more than the employee BLAKE.  \par
+(A) select * from emp where sal >(select sal from emp where ename='BLAKE');\par
+49. List the emps whose Jobs are same as ALLEN.  \par
+(A) select * from emp where sal =(select sal from emp where ename='ALLEN');\par
+50. List the emps who are senior to King.  \par
+(A) select *from emp where hiredate <(select * from emp  where ename='KING');\par
+51. List the Emps who are senior to their own MGRS.  \par
+(A) select * from empe,emp e1 where e.empno=e1.mgr and e.hiredate >e1.hiredate;\par
+52. List the Emps of Deptno 20 whose Jobs are same as Deptno10.  \par
+(A) select * from emp e,dept d where d.deptno =e.deptno and d.deptno=20 and e.job in(select e.job from emp e,dept d where e.deptno=d.deptno and d.deptno=10); \par
+53. List the Emps whose Sal is same as FORD or SMITH in desc order of Sal.\par
+(A) select * from emp where sal in (slect sal from emp where (ename='smith' or ename='ford')) order by sal desc;  \par
+54. List the emps Whose Jobs are same as MILLER or Sal is more than ALLEN.  \par
+(A) select * from emp where job=(select job from emp  where enmae='miller' ) or sal >(select sal from emp where ename ='allen'\par
+55. List the Emps whose Sal is > the total remuneration of the SALESMAN.  \par
+(A) select * emp where sal > (select sum(comm,sal) from emp where job ='salesman';\par
+56. List the emps who are senior to BLAKE working at CHICAGO & BOSTON.  \par
+(A) select * from emp e,dept d where d.deptno=e.deptno and d.loc in('chicago','boston') and e.hiredate < (select e.hiredate from emp e where e.ename ='blake');\par
+57. List the Emps of Grade 3,4 belongs to the dept ACCOUNTING and RESEARCH whose Sal is more than ALLEN and exp more than SMITH in the asc order of EXP.  \par
+58. List the emps whose jobs same as SMITH or ALLEN.  \par
+(A) select * from emp where job in (select job from emp where ename in ('smith ','allen');\par
+)59.  List the emps those who joined in company before 15th of the month.  \par
+60. Any jobs of deptno 10 those that are not found in deptno 20.  \par
+(A) select e.job from emp e where e.deptno =10 and e.job not in(select job from emp where deptno=20);\par
+61. List of emps of emp1 who are not found in emp2.  \par
+62. Find the highest sal of EMP table.  \par
+(A) select max(sal ) rom emp;\par
+63. Find details of highest paid employee.\par
+(A) select * from emp where sal =(select max(sal) from emp);  \par
+64. Find the highest paid employee of sales department.  \par
+(A) select max(sal ) from emp where sal in (select max(sal ) from emp where deptno in (select deptno from dept where dname='sales');\par
+65. List the most recently hired emp of grade3 belongs to location CHICAGO.  \par
+66. List the employees who are senior to most recently hired employee working  under king.  \par
+(A) select /8 from emp where hiredate < (select max(hiredate) from emp where mgr in(select empno from emp where ename='king');\par
+67. List the details of the employee belongs to newyork with grade 3 to 5 except \par
+\lquote PRESIDENT\rquote  whose sal> the highest paid employee of Chicago in a group where there is manager and salesman not working under king \par
+68. List the details of the senior employee belongs to 1981.\par
+(A) select * from emp where hiredate in (select  min(hiredate) from emp where year(hiredate)='1981');  \par
+69. List the employees who joined in 1981 with the job same as the most senior  person of the year 1981.  \par
+(A) select * from emp where job in(select job from emp where hiredate in (select  min(hiredate) from emp where year(hiredate)='1981');  \par
+70. List the most senior empl working under the king and grade is more than 3.  \par
+(A)select* from emp where hiredate in(select min(hiredate) from emp where empno in(select  empno from emp e,salgrade s where e.sal >= s.local and e.sal <=s.hisal and s.grade > 3) and mgr in(selecct empno from emp where empno in(select mgr from emp);\par
+71. Find the total sal given to the MGR.  \par
+(A) select sum(sal) from emp where job='MANAGER'\par
+72. Find the total annual sal to distribute job wise in the year 81. \par
+ (A) select job ,sum(sal*12) from emp where year(hiredate)='1981' group by job;\par
+73. Display total sal employee belonging to grade3.  \par
+(A) select sum(sal) from emp where empno in(slect  empno from emp e,salgrade s where e.sal >= s.losal and e.sal <=s.hisal and grade =3);\par
+74. Display the average salaries of all the clerks.\par
+(A) select avg(sal ) from emp where job='clerk';  \par
+75. List the employee in dept 20 whose sal is >the average sal 0f dept 10 emps.  \par
+(A) select * from emp where deptno=20 and sal >(select avg(sal) from emp where deptno=10); \par
+76. Display the number of employee for each job group deptno wise.  \par
+(A)select count(*) ,job ,deptno from emp group by job,deptno ;\par
+77. List the manage rno and the number of employees working for those mgrs in the  ascending Mgrno.  \par
+(A)select e.mgr,count(*) from emp e,emp e1 where e.mgr=e1.empno group by e.mgr order by e.mgr ;\par
+78. List the department,details where at least two emps are working  \par
+(A) select deptno,count(*) from emp group by deptno having count(*)>=2;\par
+79. Display the Grade, Number of emps, and max sal of each grade.  \par
+(A)select s.grade,count(*),max(sal) from emp e ,salgrade swhere e.sal between s.losal and s.hisal group by s.grade ;\par
+80. Display dname, grade, No. of emps where at least two emps are clerks.  \par
+(A)select d.dname,s.grade,count(*) from empe,deptno d,salgrade s where e.deptno=d.deptno and e.job='clerk' group by d.name,s.grade having count(*)>=2;\par
+\par
+\par
+}
+ 

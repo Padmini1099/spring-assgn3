@@ -1,0 +1,121 @@
+1. Git branch :
+branch is a pointer to a snapshot of our changes . It helps to implement a specific logic for only to a particular customer.
+If want to use that branch we merge the branch to master branch 
+we have differnet commands in branching 
+-- git branch or git branch --list // gives all the branches present current working branch 
+-- git branch branchname //to create  a branch 
+-- git checkout branchname // to migrate to a particular branch 
+-- git add branch filenmae // to add files to a branch 
+-- git merge branchname // to merge branch to master branch 
+
+2. Git checkout :
+it is used to switch between the branches present / versions 
+-- git checkout branchname //switch between branches
+-- git checkout versionname // switch between veersions
+
+3. Git merge 
+It is used to merge branches into master branch 
+-- git merge branchname
+
+4. Gitignore
+ .gitignore is the file which contains the list unwanted files in the repo,this will make unwanted files not going to staging area
+-- touch .gitignore
+-- git add .gitignore
+-- git commit -m "gitignore added"
+-- git add <filewhich we want to ignore>
+
+5. Git push 
+ this is used to push our files to github 
+-- git push or git push origin master
+
+6. git stash
+stash is used when we want to record current state of working directory and went to another to make some changes we do "git stash " so that the work will 
+be in staging area and then after coming to our current directory we do "git stash apply" so that we can resume the things 
+-- git stash 
+-- git stash apply 
+
+7. Git head :
+shows the pointer id when we perform any action
+-- git show head 
+
+8. Git pull :
+git pull is used to get the files from git to our local repo after setting a remote server
+-- git pull remotename branchname
+ 
+9. Git remote :
+ this shows the remotes created ,remote help us to get the connection to our git and repo 
+-- git remote // show all remotes
+-- git add remote remotename path //creating remote
+-- git remote -v  // check status 
+-- git remote rm remotename // to delete 
+
+10. Git revert:
+ to revert the changes made after commit 
+-- git revert pointerid  ; pointerid got from git log or git show head
+
+11. Git tag :
+ this is done when we had differnt versions or like to make a note of changes from one version to other
+-- git tag //list of all tags
+-- git tag tagname // create a tag 
+-- git checkout tagname // switch between tags
+-- git show tagname //lists all the details of that tag
+
+12. Git mv :
+used to rename 
+-- git mv filename filenametochange
+
+13. Git init :
+ used to initalize a repo 
+-- git init
+
+14.git add :
+ git add is used to add files ,by doing this files will be at staging area
+-- git add filename 
+
+15. git commit :
+This will commit the things in the staging area
+-- git commit -m "banner message"
+
+16.git clone :
+this is used to download the git repositories on to our local machine
+-- git clone <path of repo>
+
+17.git restore :
+used to remove files from staging area
+-- git restore --stage filename 
+
+18. git diff :
+shows the newly added contents of a file
+-- git diff filename 
+
+19. git log :
+show all the details of our actions performed along with pointerid 
+
+20. git status :
+shows the files at staging ,commited ,modified  files details 
+
+21. Environment variables:
+git config --global user.name "NAme"
+git config --global user.email "maildid"
+
+22. Local , cetnralized repo , distributed server
+local repository :This is the repo on our system,where we typically make local changes
+centralized repository : collection of shared files,repo ,datbases etc..
+distributed server : when the files are distibuted by making copies ,so that people can collabrate and work .If other system crashes data loss will be not
+occur 
+
+23.VCS features:
+opensource
+distributed
+security
+scable 
+speed
+tracking changes
+
+24.VCS:
+version control system helps in tracking the changes and modifications made 
+
+speed,security,distributed,tracking chnages
+
+25 indexed file :
+indexed file are easy to access ,they are connected by pointers

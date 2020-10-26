@@ -1,0 +1,47 @@
+1.What is Shared and unbindable mountpoints?
+
+Mount point defines the place of a particular dataset in the filesystem.
+The shared mountpoint is about managing propogation of mounts between peer mounts of different namespaces.
+This can be replicated as many times as needed, where each copy will be same.Under this some subdirectory
+will appear in all the replicated mountpoints.
+Unbindable mountpoint is also like private unmountpoint,it cannot be replicsted elsewhere through the use of the 
+bind flag of the mount system call or the command
+
+2.Create a directory ‘dir1’ in which you have three files. All the file should have some texts related to banking.
+Now count every occurrence of the term “bank” in all the files appearing under the directory ‘dir1’.
+
+grep -o -i bank * | wc -l 
+
+alchemy@alchemy-virtual-machine:~/t2/test$ cat f1
+A bank is a financial institution that accepts deposits from the public and creates a demand deposit while simultaneously making loans.[1] Lending activities can be performed either directly or indirectly through capital markets. 
+alchemy@alchemy-virtual-machine:~/t2/test$ cat f2
+bank is a financial institute
+alchemy@alchemy-virtual-machine:~/t2/test$ cat f3
+we have different types of bank. the bank is classified on various things.
+alchemy@alchemy-virtual-machine:~/t2/test$ grep -o -i bank * | wc -l  
+4
+
+
+3.What is the command to continuously monitor the log file for a service in running state? 
+ 
+tail -F <logfilepath>
+logfiles are in var/log location
+
+4.What is Shell in Unix?Linux? Is Bash the only shell in Unix/Linux?
+
+Shell is a program that executes other programs also known as terminal.
+It is an interface between kernel and end user.Shell is the command line interpreter in an OS like Linux or Unix
+bash is not only the shell ,we have different shells like 
+1. sh shell
+2.bash shell
+3.tc shell
+4.k shell
+
+5.What is the command to print the name of the shell in which we work?
+
+alchemy@alchemy-virtual-machine:~$ ps -p$$
+   PID TTY          TIME CMD
+  2347 pts/0    00:00:00 bash
+alchemy@alchemy-virtual-machine:~$ echo $SHELL
+/bin/bash
+

@@ -1,0 +1,35 @@
+Final Assesment 
+1.
+UNF :
+invoice(invoice_id,invooice_date,customer_name,customer_address,petname,procedure,amount)
+1NF:
+invoice(invoice_id,invoice_date,customer_name,customer_address)
+pet_invoice(pet_id,pet_name,procedure,amount,invoice_id)
+2NF:
+invoice(invoice_id,invoice_date,customer_name,customer_address)
+pet_invoice(pet_id,invoice_no,procedure,amount)
+pet_details(pet_id,pet_name)
+3NF:
+invoice(invoice_id,invoice_date,customer_name,customer_address)
+pet_invoice(pet_id,invoice_no,procedure,amount)
+pet_details(pet_id,pet_name)
+customer_details(invoice_id,customer_id,customer_name,customer_street,customer_city,customer_pincode)
+
+2.we can solve this problem using trigger , we can fire the trigger after deletion 
+code :
+
+delimiter //
+
+create or replace trigger trgsav after delete on customer_details for each row 
+
+begin
+
+insert into customer_save values(old.cust_name,old.email,old.phone,
+old.address1,old.address2,old.city,old.pincode,old.cust_request,old.reported_date,now());
+
+end;
+
+//
+
+
+;

@@ -1,0 +1,76 @@
+DAY2
+
+1.Consider an array like the below one (Ubuntu Fedora Suse Linuxmint)  
+ and find the index of the element Fedora 
+
+(A) alchemy@alchemy-virtual-machine:~$ i=0; declare -A arr=([Ubuntu]=$((i++)) [Fedora]=$((i++)) [Suse]=$((i++)) [Linuxmint]=$((i++)))   
+alchemy@alchemy-virtual-machine:~$ echo ${arr[Fedora]}
+1
+
+2.Create a shell script such that  
+ i)it takes a  text file as an input ii)perform any regex operation using  a)grep  b)sed
+ iii)redirect the output to the same file. 
+ (A) cat >f9 | grep 'f.*' f9 | cat >>f9  
+  cat >f9 |sed -n '/^f/p' |cat >>f9
+alchemy@alchemy-virtual-machine:~$ cat f9
+fruit 
+alchemy@alchemy-virtual-machine:~$ grep 'f.' f9 |cat >> f9
+alchemy@alchemy-virtual-machine:~$ cat f9
+fruit 
+fruit 
+
+alchemy@alchemy-virtual-machine:~$ sed -n '/^f/ p' f9 | cat >>f9
+alchemy@alchemy-virtual-machine:~$ sed -n '/^f/ p' f9| cat >>f9
+alchemy@alchemy-virtual-machine:~$ cat f9
+fruit 
+fruit 
+fruit 
+fruit 
+
+3.By using sed, how will you check the length of a line from text file? 
+
+sed -e '/.\{<length>\}/!d' <filename> 
+ 
+4.Search a character from a string 
+ 
+    e.g.Input string ‘hello world’           Find the position of the character ‘r’ 
+ 
+alchemy@alchemy-virtual-machine:~$ echo "hello world" | grep -b -o r
+8:r
+
+5.How will you connect your MySQL on Ubuntu?(Learning exercise) 
+
+start sql then 
+connect username/password@connection_identifier
+ 
+ 
+ id >500,replace user name as localhost
+alchemy@alchemy-virtual-machine:~$ cat >p2
+100 padd 
+501 madd
+502 sadd
+300 hadd
+504 holdd
+alchemy@alchemy-virtual-machine:~$ awk '$1>500' p2 | sed 's /$2/localuser'
+sed: -e expression #1, char 15: unterminated `s' command
+alchemy@alchemy-virtual-machine:~$ awk '$1>500' p2 | sed 's /$2/localuser' >pout
+sed: -e expression #1, char 15: unterminated `s' command
+alchemy@alchemy-virtual-machine:~$ awk '$1>500' p2 | sed 's /$2/localuser' p2 >pout
+sed: -e expression #1, char 15: unterminated `s' command
+alchemy@alchemy-virtual-machine:~$ awk '$1>500 {$2="localuser";print $1,$2}' p2 
+501 localuser
+502 localuser
+504 localuser
+
+memory of RAM and swap 
+alchemy@alchemy-virtual-machine:~/t2$ free -h  >memoh
+alchemy@alchemy-virtual-machine:~/t2$ cat memoh
+              total        used        free      shared  buff/cache   available
+Mem:           3.8G        1.1G        1.6G         13M        1.1G        2.5G
+Swap:          2.0G          0B        2.0G
+alchemy@alchemy-virtual-machine:~/t2$ awk '{print $1,$2,$3}' memoh
+total used free
+Mem: 3.8G 1.1G
+Swap: 2.0G 0B
+
+
