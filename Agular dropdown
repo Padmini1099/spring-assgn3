@@ -1,0 +1,176 @@
+export class ProductComponent {  
+   
+/// this data used to display in products dropdown   
+   
+public ProductHeader = [{ name: 'Hp' }, { name: 'Dell'}, { name: 'Lenovo' }];  
+   
+   
+/// this data used to display in products details in a html table   
+   
+public Products = [  
+{Name:'Hp', title: 'HP ENVY Laptop - 15t touch', price: '1099', store: 'Best Buy', model: '15-BS013DX' },  
+{ Name: 'Dell', title: 'Dell Laptop', price: '700', store: 'Amazon', model: 'I7378-3000SLV-PUS' },  
+{ Name: 'Lenovo', title: 'Lenovo Touch-Screen Laptop', price: '670', store: 'Target', model: '81A40025US' },  
+{ Name: 'Hp', title: 'HP OfficeJet Pro 6978 All-in-One Printer', price: '100', store: 'Target', model: 'T0F29A#B1H' },  
+{ Name: 'Hp', title: 'HP Laptop - 17t touch ', price: '420', store: 'Target', model: '1EZ78AV_1' },  
+{ Name: 'Dell', title: 'Dell - XPS 27" Touch-Screen All-In-One', price: '670', store: 'Target', model: 'BBY-311C3FX' },  
+{ Name: 'Dell', title: 'Dell - Inspiron 21.5" Touch-Screen All-In-One', price: '469.90', store: 'Target', model: 'I3265-A067BLK-PUS' },  
+{ Name: 'Lenovo', title: 'Lenovo - 520-24AST 23.8" Touch-Screen All-In-One', price: '679.99', store: 'Target', model: 'F0D3000EUS' },  
+{ Name: 'Dell', title: 'Dell - XPS 2-in-1 13.3" Touch-Screen Laptop', price: '1199.99', store: 'Target', model: 'XPS9365-7086SLV-PUS' }  
+];  
+   
+constructor() {  
+  
+             }  
+   
+   
+}   
+Bind a ProductHeader array object to a drop-down list with *ngFor
+ 
+I have used *ngFor to iterate the items in an array object. For displaying a value, use {{object.key}} (this is nothing but {{ prod.name}})
+ 
+ 
+import { Component, } from '@angular/core';  
+   
+@Component({  
+   
+selector: 'my-product-view',  
+styleUrls: ['styles.css'],  
+template: `  
+<div>  
+Select Product :  
+<select>  
+        <option *ngFor="let prod of ProductHeader">{{prod.name}} </option>  
+</select>  
+',  
+   
+})  
+export class ProductComponent {  
+   
+ public ProductHeader = [{ name: 'Hp' }, { name: 'Dell'}, { name: 'Lenovo' }];  
+   
+     constructor() {  
+   /// this constructor will call once the ProductComponent class object is ready.  
+                   this.getProducts();  
+              }  
+   
+getProducts() {  
+          
+       return this.ProductHeader;  
+    }  
+   
+}  
+Call a method on selected dropdown list item
+
+Whenever a user changes a value in a dropdown list, the ngModelChange changes will call a method.
+<select [(ngModel)]="ProductHeader.name" (ngModelChange)="SearchProduct(ProductHeader.name)">  
+     <option *ngFor="let prod of ProductHeader">{{prod.name}} </option>  
+ </select>  
+Create a serach ProductDetails method in a Component class as below.
+export class ProductComponent {  
+   
+//Create a object for storing filter data and bind to html table.  
+public ProductDetails: object = [];  
+   
+//filter product details on name and return productDetails object.
+SearchProduct(name: string) {  
+let obj = this.Products.filter(m => m.Name == name);  
+this.ProductDetails = obj;  
+return this.ProductDetails;  
+}  
+   
+
+}  
+Bind Product details object to an HTML table
+ 
+Create an HTML table with <tr> and <td> to display the product title, store, price, and model.
+<table class="TFtable">  
+<tr >  
+<th>Name</th> <th>Store</th> <th>Price</th> <th>Model</th>  
+</tr>  
+<tr *ngFor="let Prod of ProductDetails">  
+<td>{{Prod.title}}</td>  
+<td>{{Prod.store}}</td>  
+<td>{{Prod.price}}</td>  
+<td>{{Prod.model}}</td>  
+</tr>  
+  
+</table>  
+ Here is the complete code.
+import { Component, } from '@angular/core';  
+  
+@Component({  
+     
+    selector: 'my-product-view',  
+    styleUrls: ['styles.css'],  
+    template: `  
+                <div>  
+                        Select Product :  
+                        <select  [(ngModel)]="ProductHeader.name" (ngModelChange)="SearchProduct(ProductHeader.name)">  
+                             <option *ngFor="let prod of ProductHeader">{{prod.name}} </option>  
+                         </select>  
+  
+  
+  
+<div *ngIf="ProductHeader.name">  
+    <h5>You have selected: {{ProductHeader.name}} Product </h5>  
+</div>  
+                </div>  
+<div>  
+<h4>Product Details:</h4>  
+<table class="TFtable">  
+<tr >   
+    <th>Name</th> <th>Store</th>  <th>Price</th> <th>Model</th>  
+</tr>  
+ <tr  *ngFor="let Prod of ProductDetails">  
+    <td>{{Prod.title}}</td>  
+    <td>{{Prod.store}}</td>  
+    <td>{{Prod.price}}</td>  
+    <td>{{Prod.model}}</td>  
+</tr>  
+  
+</table>  
+</div>  
+               `,  
+})  
+  
+export class ProductComponent {  
+gi
+  //Create a object for storing filter data and bind to html table.
+    public ProductDetails: object = [];  
+
+  //filter product details on name and return productDetails object.
+    public ProductHeader = [{ name: 'Hp' }, { name: 'Dell'}, { name: 'Lenovo' }];  
+    
+    public Products = [  
+        {Name:'Hp', title: 'HP ENVY Laptop - 15t touch', price: '1099', store: 'Best Buy', model: '15-BS013DX' },  
+        { Name: 'Dell', title: 'Dell Laptop', price: '700', store: 'Amazon', model: 'I7378-3000SLV-PUS' },  
+        { Name: 'Lenovo', title: 'Lenovo Touch-Screen Laptop', price: '670', store: 'Target', model: '81A40025US' },  
+        { Name: 'Hp', title: 'HP OfficeJet Pro 6978 All-in-One Printer', price: '100', store: 'Target', model: 'T0F29A#B1H' },  
+        { Name: 'Hp', title: 'HP Laptop - 17t touch ', price: '420', store: 'Target', model: '1EZ78AV_1' },  
+        { Name: 'Dell', title: 'Dell - XPS 27" Touch-Screen All-In-One', price: '670', store: 'Target', model: 'BBY-311C3FX' },  
+        { Name: 'Dell', title: 'Dell - Inspiron 21.5" Touch-Screen All-In-One', price: '469.90', store: 'Target', model: 'I3265-A067BLK-PUS' },  
+        { Name: 'Lenovo', title: 'Lenovo - 520-24AST 23.8" Touch-Screen All-In-One', price: '679.99', store: 'Target', model: 'F0D3000EUS' },  
+        { Name: 'Dell', title: 'Dell - XPS 2-in-1 13.3" Touch-Screen Laptop', price: '1199.99', store: 'Target', model: 'XPS9365-7086SLV-PUS' }  
+       ];  
+  
+    constructor() {  
+      
+        this.getProducts();  
+    }  
+    getProducts() {  
+        console.log("getProducts");  
+        return this.ProductHeader;  
+    }  
+  
+  
+    SearchProduct(name: string) {  
+  
+        let obj = this.Products.filter(m => m.Name == name);  
+        this.ProductDetails = obj;  
+        return this.ProductDetails;  
+    }  
+  
+  
+}  
+Output
